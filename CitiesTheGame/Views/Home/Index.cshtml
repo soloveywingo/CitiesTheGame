@@ -1,0 +1,17 @@
+﻿@model CitiesTheGame.ViewModels.CitiesViewModel
+<form method="post">
+    @Html.ValidationSummary()
+    <input type="text" name="PersonName" value="YourName" />
+    <input type="text" name="cityName" value="YourCity" />
+    <input type="submit" />
+</form>
+
+@foreach (var item in CitiesTheGame.Models.Cities.citiesThatWere.Keys)
+{
+    <h2>@for (int i = 0; i < item.Length; i++)
+    {
+        @item[i];
+    }
+    @CitiesTheGame.Models.Cities.citiesThatWere[item] </h2>
+}
+
