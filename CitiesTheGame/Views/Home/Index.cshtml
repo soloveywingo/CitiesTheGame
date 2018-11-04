@@ -1,17 +1,18 @@
-﻿@model CitiesTheGame.ViewModels.CitiesViewModel
-<form method="post">
+﻿<form method="post">
     @Html.ValidationSummary()
-    <input type="text" name="PersonName" value="YourName" />
-    <input type="text" name="cityName" value="YourCity" />
+    <label title="Your Name" >Your Name</label>
+    <input type="text" name="PersonName" />
+    <label title="Your City">Your City</label>
+    <input type="text" name="cityName" />
     <input type="submit" />
 </form>
 
-@foreach (var item in CitiesTheGame.Models.Cities.citiesThatWere.Keys)
+@foreach (var item in CitiesTheGame.Models.Cities.CitiesThatWereUsed.Keys)
 {
     <h2>@for (int i = 0; i < item.Length; i++)
     {
         @item[i];
     }
-    @CitiesTheGame.Models.Cities.citiesThatWere[item] </h2>
+    @CitiesTheGame.Models.Cities.CitiesThatWereUsed[item] </h2>
 }
 

@@ -13,24 +13,28 @@ namespace CitiesTheGame.Controllers
     public class HomeController : Controller
     {
         // GET: Cities
-        [HttpPost]
-        public ActionResult Index(CitiesViewModel citiesViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                Cities.citiesThatWere.Add(citiesViewModel.PersonName.ToArray(), citiesViewModel.CityName.ToUpper());
-                Cities.StartLetter = citiesViewModel.CityName.ToString()[citiesViewModel.CityName.ToString().Length -1];
-            }
-            return View(citiesViewModel);
+      
 
-        }
         [HttpGet]
         public ActionResult Index()
         {
             CitiesViewModel citiesViewModel = new CitiesViewModel
             {
-                collectedCities = Cities.citiesThatWere
+                CollectedCities = Cities.CitiesThatWereUsed
             };
+            return View(citiesViewModel);
+        }
+        [HttpPost]
+        public ActionResult Index(CitiesViewModel citiesViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Cities.CitiesThatWereUsed.Add(citiesViewModel.PersonName.ToArray(),
+                    citiesViewModel.CityName.ToUpper());
+                Cities.StartLetter = citiesViewModel.CityName.Last();
+
+                return RedirectToAction("Index");
+            }
             return View(citiesViewModel);
         }
     }
